@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { getAuth, updateProfile } from 'firebase/auth';
-import { updateDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase.config';
-import { toast } from 'react-toastify';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { getAuth, updateProfile } from "firebase/auth";
+import { updateDoc, doc } from "firebase/firestore";
+import { db } from "../firebase.config";
+import { toast } from "react-toastify";
+import arrowRight from "../assets/svg/keyboardArrowRightIcon.svg";
+import homeIcon from "../assets/svg/homeIcon.svg";
 
 const Profile = () => {
   const auth = getAuth();
@@ -19,7 +21,7 @@ const Profile = () => {
 
   const handleLogout = () => {
     auth.signOut();
-    navigate('/');
+    navigate("/");
   };
 
   const handleChange = (e) => {
@@ -35,13 +37,13 @@ const Profile = () => {
         });
 
         // Update in firestore
-        const userRef = doc(db, 'users', auth.currentUser.uid);
+        const userRef = doc(db, "users", auth.currentUser.uid);
         await updateDoc(userRef, {
           name,
         });
       }
     } catch (error) {
-      toast.error('Could not update profile details');
+      toast.error("Could not update profile details");
     }
   };
 
@@ -63,7 +65,7 @@ const Profile = () => {
               setChangeDetails(!changeDetails);
             }}
           >
-            {changeDetails ? 'done' : 'change'}
+            {changeDetails ? "done" : "change"}
           </p>
         </div>
 
@@ -74,7 +76,7 @@ const Profile = () => {
               name='name'
               value={name}
               onChange={handleChange}
-              className={!changeDetails ? 'profileName' : 'profileNameActive'}
+              className={!changeDetails ? "profileName" : "profileNameActive"}
               disabled={!changeDetails}
             />
             <input
@@ -87,6 +89,12 @@ const Profile = () => {
             />
           </form>
         </div>
+
+        <Link to='/create-listing' className='createListing'>
+          <img src={homeIcon} alt='home' />
+          <p>Sell or rent your home </p>
+          <img src={arrowRight} alt='arrow right' />
+        </Link>
       </main>
     </div>
   );

@@ -92,10 +92,7 @@ const Listing = () => {
         {/* MAP */}
 
         {auth.currentUser?.uid !== listing.userRef && (
-          <Link
-            to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.loacation}`}
-            className='primaryButton'
-          >
+          <Link to={`/contact/${listing.userRef}`} className='primaryButton'>
             Contact Landlord
           </Link>
         )}

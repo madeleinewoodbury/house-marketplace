@@ -12,6 +12,7 @@ import Listing from "./pages/Listing";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ForgotPassword from "./pages/ForgotPassword";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path='/category/:categoryName/:listingId'
             element={<Listing />}
           />
+          <Route path='/contact/:landlordId' element={<Contact />} />
           <Route path='/sign-in' element={<SignIn />} />
           <Route path='/sign-up' element={<SignUp />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
